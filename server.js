@@ -3,6 +3,6 @@ import connectDB from './data/database.js';
 
 connectDB();
 
-app.listen(process.env.PORT,() => {
+app.listen(3001,() => {
     console.log("Server is running!!")
 })
