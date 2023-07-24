@@ -1,50 +1,16 @@
-import  express  from "express";
+import express from 'express';
+import User from '../Models/user.js';
+import { getAllUser, register, specialUser, userById } from'../Controllers/user.js';
 
 const router = express.Router();
 
-router.get('/users/all',async(req,res)=>{
-    const users = await User.find({});
-    // params
-    
-    // const key = req.query.keyword;
+router.get('/all',getAllUser);
 
-    res.json({
-        sucess:true,
-        users,
-    })
-})
+router.get('/new',register);
 
-app.get('/users/new',async(req,res)=>{
-    const {name,Email,password} = req.body;
-    // will not work need middleware of json 
-    const users = await User.create({
-        name,
-        Email,
-        password
-    });
-    // 201 is for creation
-    res.status(201).cookie('tempo','hiiz').json({
-        sucess:true,
-        mesaage:"Sucessful Regsitration",
-    })
-})
-
-app.get('/user/special',(req,res)=>{
-    res.json({
-        sucess:"true",
-        message:"Just Joking",
-    })
-})
+router.get('/special',specialUser);
 
 // ALWAYS KEEP DYNAMIC ROUTING AT END BECUASE FROM TOP JS WILL MAKE THIS ROUTE FIRST
-app.get('/userId/:userID',async (req,res)=>{
-    const { id } = req.params;
-    const user = await User.findById(id);
-
-    res.json({
-        sucess:"true",
-        user,
-    })
-})
+router.get('/userId/:userID',userById);
 
 export default router;
