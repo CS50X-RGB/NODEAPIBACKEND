@@ -45,9 +45,9 @@ export const login = async (req, res, next) => {
 
 export const getMyProfile = async (req, res) => {
   // Check whether the user is logged in
-  const { token } = req.cookies;
-  console.log(token);
-  if (!token) {
+  const { Token } = req.cookies;
+  console.log(Token);
+  if (!Token) {
     return res.status(401).json({
       success: false,
       message: "Unauthorized. Please log in first.",
@@ -55,12 +55,12 @@ export const getMyProfile = async (req, res) => {
   }
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(Token, process.env.JWT_SECRET);
     let user = await User.findById(decoded._id);
 
     res.status(200).json({
       success: true,
-      user: "Hh",
+      user,
     });
   } catch (error) {
     res.status(401).json({

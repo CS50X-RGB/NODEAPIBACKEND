@@ -7,7 +7,7 @@ import cookieParser from 'cookie-parser';
 export const app = express();
 //MiddleWares
 app.use(cookieParser());
-app.use(express.json());
+app.use(express.json({strict:true}));
 
 //using  Router
 const Router = express.Router();
