@@ -25,7 +25,7 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-  res.send("Hello bhai");
+  res.send("<h1>Hi API V1</h1>");
 });
 
 config({
