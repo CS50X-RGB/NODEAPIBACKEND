@@ -43,30 +43,23 @@ export const login = async (req, res, next) => {
   sendToken(user, `Hi ${user.name} Ur Logged In Weclome Again`, res, 200);
 };
 
-export const getMyProfile = async (req, res) => {
+export const getMyProfile = (req, res) => {
   // Check whether the user is logged in
-  const { Token } = req.cookies;
-  console.log(Token);
-  if (!Token) {
-    return res.status(401).json({
-      success: false,
-      message: "Unauthorized. Please log in first.",
-    });
-  }
-
-  try {
-    const decoded = jwt.verify(Token, process.env.JWT_SECRET);
-    let user = await User.findById(decoded._id);
-
     res.status(200).json({
       success: true,
-      user,
+      user:req.user,
     });
-  } catch (error) {
-    res.status(401).json({
-      success: false,
-      message: "Invalid or expired token. Please log in again.",
-    });
-  }
+  
 };
+export const logout = (req, res) => {
+  // Check whether the user is logged in
+    res.status(200).cookie("Token","",{
+      expires:new Date(Date.now()),
+    }).json({
+      success: true,
+      user:req.user,
+    });
+  
+};
+
 
