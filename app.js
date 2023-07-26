@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import UserRouter from './Router/user.js';
+import TaskRouter from './Router/task.js';
 import { config } from 'dotenv';
 import cookieParser from 'cookie-parser';
 
@@ -12,6 +13,7 @@ app.use(express.json({strict:true}));
 //using  Router
 const Router = express.Router();
 app.use("/api/v1/users",UserRouter);
+app.use("/api/v1/tasks",TaskRouter);
 
 app.get('/',(req,res)=>{
     res.send("Hello bhai");
