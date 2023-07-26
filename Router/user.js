@@ -1,11 +1,10 @@
 import express from 'express';
 import User from '../Models/user.js';
-import {  getAllUser, login, register,getMyProfile,logout} from'../Controllers/user.js';
+import { login, register,getMyProfile,logout} from'../Controllers/user.js';
 import { isAuth } from '../middleware/auth.js';
 
 const router = express.Router();
 
-router.get('/all',getAllUser);
 
 router.post('/new',register);
 router.post('/login',login);
