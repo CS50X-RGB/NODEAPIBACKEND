@@ -6,6 +6,6 @@ const connectDB = () => {
       dbName: "BackendApi",
     })
     .then((c) => console.log(`DataBase connected ${c.connection.host}`))
-    .catch(() => console.log(e));
+    .catch((e) => console.log(e));
 };
 export default connectDB;
