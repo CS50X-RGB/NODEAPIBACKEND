@@ -18,7 +18,7 @@ app.use("/api/v1/users", UserRouter);
 app.use("/api/v1/tasks", TaskRouter);
 app.use(
   cors({
-    origin: "*",
+    origin: "http://localhost:3000", 
     methods: ["PUT", "GET", "POST", "DELETE"],
     credentials: true,
   })
