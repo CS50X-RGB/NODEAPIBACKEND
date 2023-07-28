@@ -18,7 +18,7 @@ app.use("/api/v1/users", UserRouter);
 app.use("/api/v1/tasks", TaskRouter);
 app.use(
   cors({
-    origin: [process.env.FRONTEND_URL],
+    origin: "*",
     methods: ["PUT", "GET", "POST", "DELETE"],
     credentials: true,
   })
