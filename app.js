@@ -11,11 +11,6 @@ export const app = express();
 //MiddleWares
 app.use(cookieParser());
 app.use(express.json({ strict: true }));
-
-//using  Router
-const Router = express.Router();
-app.use("/api/v1/users", UserRouter);
-app.use("/api/v1/tasks", TaskRouter);
 app.use(
   cors({
     origin: "http://localhost:3000", 
@@ -23,6 +18,12 @@ app.use(
     credentials: true,
   })
 );
+
+//using  Router
+const Router = express.Router();
+app.use("/api/v1/users", UserRouter);
+app.use("/api/v1/tasks", TaskRouter);
+
 
 app.get("/", (req, res) => {
   res.send("<h1>Hi API V1</h1>");
